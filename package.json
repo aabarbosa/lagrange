@@ -1,0 +1,21 @@
+{
+  "name": "lagrange-interpolation",
+  "version": "2.0.0",
+  "description": "In numerical analysis, Lagrange polynomials are used for polynomial interpolation. For a given set of points with no two values equal, the Lagrange polynomial is the polynomial of lowest degree that assumes at each value the corresponding value (i.e. the functions coincide at each point).",
+  "main": "lagrange.js",
+  "scripts": {
+    "test": "echo \"TODO\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aabarbosa/lagrange.git"
+  },
+  "keywords": ["interpolate", "interpolation", "interpolating", "lagrange",
+    "polynomial", "math", "mathematics", "numeric"],
+  "author": "aabarbosa, leandro_tavares",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aabarbosa/lagrange/issues"
+  },
+  "homepage": "https://aabarbosa.github.io/lagrange"
+}

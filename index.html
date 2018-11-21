@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Lagrange interpolation">
+    <meta name="author" content="aabarbosa, Leandro Tavares">
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+    <title>Lagrange interpolation</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/index.css" rel="stylesheet">
+    <link href="dist/css/style.css" rel="stylesheet">
+    <link href="dist/css/katex.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <header>
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <strong>Lagrange Interpolation</strong> <!--slightly mod-->
+          </a>
+        </div>
+      </div>
+    </header>
+<div class="container">
+  <br>
+
+<p>Definition:</p>
+<div id="LagrangeEquation" class="row">
+ <div class="col">
+   <p id="equation"></p>
+ </div>
+ <div class="col">
+  <p id="equation2"></p>
+ </div>
+</div>
+<p> Points to be interpolated (data used to predict CI density)</p> <!--slightly mod-->
+  <div id="table" class="table-editable">
+    <span class="table-add glyphicon glyphicon-plus"></span>
+    <table class="table">
+      <tr>
+        <th>Month</th> <!-- variables-->
+        <th>Density</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td contenteditable="true" class="number">0</td>
+        <td contenteditable="true" class="number">8.21</td>
+        <td>
+          <span class="table-remove glyphicon glyphicon-remove"></span>
+        </td>
+        <td>
+          <span class="table-up glyphicon glyphicon-arrow-up"></span>
+          <span class="table-down glyphicon glyphicon-arrow-down"></span>
+        </td>
+      </tr>
+      <tr>
+        <td contenteditable="true" class="number">1</td>
+        <td contenteditable="true" class="number">7.2</td>
+        <td>
+          <span class="table-remove glyphicon glyphicon-remove"></span>
+        </td>
+        <td>
+          <span class="table-up glyphicon glyphicon-arrow-up"></span>
+          <span class="table-down glyphicon glyphicon-arrow-down"></span>
+        </td>
+      </tr>
+      <tr>
+        <td contenteditable="true" class="number">2</td>
+        <td contenteditable="true" class="number">5.5</td>
+        <td>
+          <span class="table-remove glyphicon glyphicon-remove"></span>
+        </td>
+        <td>
+          <span class="table-up glyphicon glyphicon-arrow-up"></span>
+          <span class="table-down glyphicon glyphicon-arrow-down"></span>
+        </td>
+      </tr>
+      <tr>
+        <td contenteditable="true" class="number">4</td>
+        <td contenteditable="true" class="number">5.43</td>
+        <td>
+          <span class="table-remove glyphicon glyphicon-remove"></span>
+        </td>
+        <td>
+          <span class="table-up glyphicon glyphicon-arrow-up"></span>
+          <span class="table-down glyphicon glyphicon-arrow-down"></span>
+        </td>
+      </tr>
+      <tr>
+        <td contenteditable="true" class="number">5</td>
+        <td contenteditable="true" class="number">7.84</td>
+        <td>
+          <span class="table-remove glyphicon glyphicon-remove"></span>
+        </td>
+        <td>
+          <span class="table-up glyphicon glyphicon-arrow-up"></span>
+          <span class="table-down glyphicon glyphicon-arrow-down"></span>
+        </td>
+      </tr>
+      <tr>
+        <td contenteditable="true" class="number">6</td>
+        <td contenteditable="true" class="number">1.2</td>
+        <td>
+          <span class="table-remove glyphicon glyphicon-remove"></span>
+        </td>
+        <td>
+          <span class="table-up glyphicon glyphicon-arrow-up"></span>
+          <span class="table-down glyphicon glyphicon-arrow-down"></span>
+        </td>
+      </tr>
+      <!-- This is our clonable table line -->
+      <tr class="hide d-none">
+        <td contenteditable="true" class="number">0</td>
+        <td contenteditable="true" class="number">0</td>
+        <td>
+          <span class="table-remove glyphicon glyphicon-remove"></span>
+        </td>
+        <td>
+          <span class="table-up glyphicon glyphicon-arrow-up"></span>
+          <span class="table-down glyphicon glyphicon-arrow-down"></span>
+        </td>
+      </tr>
+    </table>
+  </div>
+    <button id="clear-btn" class="btn btn-secondary">Clear data points</button>
+    <button id="calculate-btn" class="btn btn-primary">Calculate Lagrange</button>
+
+
+  <p id="export"></p>
+ <div class="row">
+  <div id="divEquationL" class="col">
+  </div>
+</div>
+<br/>
+<div class="row">
+  <div class="col">
+   <p id="equationP"></p>
+  </div>
+</div>
+<div id="divEval" style="display:none;">
+<input id="value"/>
+<button id="interpolate-btn" class="btn btn-success">Interpolate</button>
+</div>
+<div id="resultAlert" class="alert alert-success" role="alert" style="display:none;">
+  Lagrange says that interpolated value is <strong><span id="resultValue"></span></strong>
+</div>
+<div>
+  <canvas id="chart"></canvas>
+</div>
+</div>
+</div>
+<script src="dist/js/jquery-3.3.1.min.js"></script>
+<script src="dist/js/jquery-ui.min.js"></script>
+<script src="dist/js/katex.min.js"></script>
+<script src="dist/js/math.min.js"></script>
+<script src="dist/js/Chart.min.js"></script>
+<script src="lagrange.js"></script>
+<script src="dist/js/index.js"></script>
+
+
+<script>
+katex.render("L_i = \\frac{\\displaystyle \\prod_{{j=0 , j\\neq1}}^{n} (x - x_j)}{\\displaystyle \\prod_{j=0 , j\\neq1}^{n} (x_i - x_j)}" , equation, {
+    throwOnError: false
+});
+katex.render("P_n(x) = \\displaystyle \\sum_{i = 0}^{n} L_i \\cdot f(x_i)" , equation2, {
+    throwOnError: false
+});
+
+
+</script>
+  </body>
+
+
+</html>
